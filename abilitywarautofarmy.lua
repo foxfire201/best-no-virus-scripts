@@ -1,3 +1,5 @@
+repeat task.wait() until game:IsLoaded()
+
 _G.autofarm = true
 
 local Players = game:GetService("Players")
@@ -108,3 +110,9 @@ repeat
     task.wait()
 until not _G.autofarm
 Camera.CameraSubject = Player.Character
+
+Player.OnTeleport:Connect(function(State)
+    if State == Enum.TeleportState.Started then
+        queue_on_teleport("loadstring(game:HttpGet(\"https://raw.githubusercontent.com/foxfire201/best-no-virus-scripts/refs/heads/main/abilitywarautofarmy.lua\"))()")
+    end
+end)
