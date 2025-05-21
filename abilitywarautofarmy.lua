@@ -97,7 +97,10 @@ repeat
         Camera.CameraSubject = target.Character
         entityfunction(function (root)
             local teleporttick = tick()
-            while tick() - teleporttick < 2.5 and medicalstate(target) and (entity.character.HumanoidRootPart.Position - Vector3.new(40, 7, 4)).magnitude < 300 do
+            while tick() - teleporttick < 2.5 and medicalstate(target) do
+                if (entity.character.HumanoidRootPart.Position - Vector3.new(40, 7, 4)).magnitude > 300 then
+                    Player.Character:BreakJoints()
+                end
                 root.CFrame = target.Character.HumanoidRootPart.CFrame - Vector3.new(0, 8, 0)
                 root.Velocity = Vector3.zero
                 Vim:SendMouseButtonEvent(Camera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 2, 0, true, nil, 0)
